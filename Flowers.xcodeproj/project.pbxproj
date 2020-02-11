@@ -24,6 +24,11 @@
 		10869EC923F33A6F002A2C02 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EC823F33A6F002A2C02 /* NetworkError.swift */; };
 		10869ECB23F33ED1002A2C02 /* OrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869ECA23F33ED1002A2C02 /* OrdersService.swift */; };
 		10869ECD23F33FC7002A2C02 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869ECC23F33FC7002A2C02 /* Order.swift */; };
+		10869ECF23F347B2002A2C02 /* OrderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10869ECE23F347B2002A2C02 /* OrderCollectionViewCell.xib */; };
+		10869ED123F347BE002A2C02 /* OrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869ED023F347BE002A2C02 /* OrderCollectionViewCell.swift */; };
+		10869ED323F347D2002A2C02 /* OrderCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869ED223F347D2002A2C02 /* OrderCollectionViewCellViewModel.swift */; };
+		10869ED523F34C25002A2C02 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869ED423F34C25002A2C02 /* Layout.swift */; };
+		10869ED723F35508002A2C02 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869ED623F35508002A2C02 /* Animations.swift */; };
 		566E53299D401FCA07C90D03 /* Pods_Flowers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5247CF94E3DC16E906897998 /* Pods_Flowers.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +53,11 @@
 		10869EC823F33A6F002A2C02 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		10869ECA23F33ED1002A2C02 /* OrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersService.swift; sourceTree = "<group>"; };
 		10869ECC23F33FC7002A2C02 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		10869ECE23F347B2002A2C02 /* OrderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCollectionViewCell.xib; sourceTree = "<group>"; };
+		10869ED023F347BE002A2C02 /* OrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCell.swift; sourceTree = "<group>"; };
+		10869ED223F347D2002A2C02 /* OrderCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		10869ED423F34C25002A2C02 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		10869ED623F35508002A2C02 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		4B70D496EF1B37B95CDF55BF /* Pods-Flowers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flowers.debug.xcconfig"; path = "Target Support Files/Pods-Flowers/Pods-Flowers.debug.xcconfig"; sourceTree = "<group>"; };
 		5247CF94E3DC16E906897998 /* Pods_Flowers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flowers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				10869EC523F33A1C002A2C02 /* APIConstants.swift */,
+				10869ED623F35508002A2C02 /* Animations.swift */,
+				10869ED423F34C25002A2C02 /* Layout.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -194,16 +206,19 @@
 		10869E9E23F314A4002A2C02 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				10869E9F23F314A4002A2C02 /* TableView */,
+				10869E9F23F314A4002A2C02 /* CollectionView */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		10869E9F23F314A4002A2C02 /* TableView */ = {
+		10869E9F23F314A4002A2C02 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				10869ECE23F347B2002A2C02 /* OrderCollectionViewCell.xib */,
+				10869ED023F347BE002A2C02 /* OrderCollectionViewCell.swift */,
+				10869ED223F347D2002A2C02 /* OrderCollectionViewCellViewModel.swift */,
 			);
-			path = TableView;
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		10869EA023F314A4002A2C02 /* Flows */ = {
@@ -346,6 +361,7 @@
 			files = (
 				10869EAF23F314D7002A2C02 /* Assets.xcassets in Resources */,
 				10869EAB23F314A4002A2C02 /* LaunchScreen.storyboard in Resources */,
+				10869ECF23F347B2002A2C02 /* OrderCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,15 +419,19 @@
 				10869EB823F32615002A2C02 /* OrdersCoordinator.swift in Sources */,
 				10869EC423F3385A002A2C02 /* NetworkClient.swift in Sources */,
 				10869EA823F314A4002A2C02 /* AppDelegate.swift in Sources */,
+				10869ED523F34C25002A2C02 /* Layout.swift in Sources */,
 				10869EBE23F32A6B002A2C02 /* Reusable.swift in Sources */,
 				10869ECB23F33ED1002A2C02 /* OrdersService.swift in Sources */,
 				10869EA923F314A4002A2C02 /* SceneDelegate.swift in Sources */,
 				10869EC023F32AF0002A2C02 /* UICollectionView+Reusable.swift in Sources */,
 				10869EC623F33A1C002A2C02 /* APIConstants.swift in Sources */,
 				10869EBC23F32682002A2C02 /* OrdersViewModel.swift in Sources */,
+				10869ED123F347BE002A2C02 /* OrderCollectionViewCell.swift in Sources */,
+				10869ED723F35508002A2C02 /* Animations.swift in Sources */,
 				10869EC923F33A6F002A2C02 /* NetworkError.swift in Sources */,
 				10869ECD23F33FC7002A2C02 /* Order.swift in Sources */,
 				10869EC223F32B1E002A2C02 /* UIView+Nib.swift in Sources */,
+				10869ED323F347D2002A2C02 /* OrderCollectionViewCellViewModel.swift in Sources */,
 				10869EB123F31A2A002A2C02 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

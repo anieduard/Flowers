@@ -22,7 +22,7 @@ protocol OrdersViewModel: AnyObject {
 
 final class OrdersViewModelImpl: OrdersViewModel {
     
-    typealias DataSourceType = NSDiffableDataSourceSnapshot<Section, UIImage?>
+    typealias DataSourceType = NSDiffableDataSourceSnapshot<Section, OrderCollectionViewCellViewModelImpl>
     
     // MARK: - Public properties
     
@@ -52,7 +52,8 @@ final class OrdersViewModelImpl: OrdersViewModel {
             
             switch result {
             case .success(let orders):
-                self.dataSourceSnapshot.appendItems([], toSection: .orders)
+                self.dataSourceSnapshot.appendItems(orders.map(OrderCollectionViewCellViewModelImpl.init), toSection: .orders)
+                self.reloadData?(self.dataSourceSnapshot)
             case .failure(let error):
                 self.flowDelegate?.shouldShowError(error, on: self)
             }

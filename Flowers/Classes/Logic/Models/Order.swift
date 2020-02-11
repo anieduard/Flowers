@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Order: Decodable {
+struct Order: Decodable, Hashable {
     
     private enum CodingKeys: String, CodingKey {
         case id

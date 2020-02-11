@@ -37,10 +37,10 @@ extension Coordinator {
 
 // MARK: - Constants
 
-extension String {
+private extension String {
     static let oups = "Oups.."
 }
 
-extension UIAlertAction {
+private extension UIAlertAction {
     static let ok = UIAlertAction(title: "Ok", style: .default)
 }

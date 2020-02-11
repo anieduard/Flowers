@@ -20,9 +20,10 @@ final class OrdersViewController: UIViewController {
     }()
     private let collectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    private lazy var dataSource: UICollectionViewDiffableDataSource<OrdersViewModelImpl.Section, UIImage?> = {
-        UICollectionViewDiffableDataSource<OrdersViewModelImpl.Section, UIImage?>(collectionView: collectionView) { collectionView, indexPath, image in
-            let cell = collectionView.dequeueReusableCell(for: indexPath)
+    private lazy var dataSource: UICollectionViewDiffableDataSource<OrdersViewModelImpl.Section, OrderCollectionViewCellViewModelImpl> = {
+        UICollectionViewDiffableDataSource<OrdersViewModelImpl.Section, OrderCollectionViewCellViewModelImpl>(collectionView: collectionView) { collectionView, indexPath, viewModel in
+            let cell: OrderCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.viewModel = viewModel
             return cell
         }
     }()
@@ -54,18 +55,43 @@ final class OrdersViewController: UIViewController {
     }
     
     private func initView() {
+        view.backgroundColor = .systemBackground
+        
+        collectionView.delegate = self
         collectionView.dataSource = dataSource
-        collectionView.register(cellType: UICollectionViewCell.self)
+        collectionView.contentInset.top = .padding5x
+        collectionView.register(cellType: OrderCollectionViewCell.self)
+        
+        collectionViewFlowLayout.minimumLineSpacing = .padding5x
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let itemSizeWidth = view.frame.width - 2 * .padding5x
+        collectionViewFlowLayout.itemSize = CGSize(width: itemSizeWidth, height: itemSizeWidth / 2)
     }
     
     // MARK: - Bindings
     
     private func initBindings() {
+        viewModel.reloadData = { [weak self] dataSourceSnapshot in
+            self?.dataSource.apply(dataSourceSnapshot, animatingDifferences: true)
+        }
+    }
+}
+
+extension OrdersViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
     
-    // MARK: - User interaction
-    
-}
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
 
-// MARK: - Constants
+        UIView.animate(withDuration: .normalAnimationDuration, delay: 0.05 * TimeInterval(indexPath.row), animations: {
+            cell.alpha = 1
+        })
+    }
+}

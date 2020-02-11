@@ -8,4 +8,5 @@ target 'Flowers' do
   # Pods for Flowers
   
   pod 'Alamofire'
+  pod 'Kingfisher'
 end
