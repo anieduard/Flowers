@@ -23,5 +23,9 @@ final class RootCoordinator: Coordinator {
     func start() {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        
+        let ordersCoordinator = OrdersCoordinator(navigationController: navigationController)
+        ordersCoordinator.start()
+        childCoordinators.append(ordersCoordinator)
     }
 }

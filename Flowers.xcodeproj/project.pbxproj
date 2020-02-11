@@ -13,6 +13,12 @@
 		10869EAF23F314D7002A2C02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10869EAE23F314D7002A2C02 /* Assets.xcassets */; };
 		10869EB123F31A2A002A2C02 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EB023F31A2A002A2C02 /* Coordinator.swift */; };
 		10869EB323F31A48002A2C02 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EB223F31A48002A2C02 /* RootCoordinator.swift */; };
+		10869EB823F32615002A2C02 /* OrdersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EB723F32615002A2C02 /* OrdersCoordinator.swift */; };
+		10869EBB23F32682002A2C02 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EB923F32682002A2C02 /* OrdersViewController.swift */; };
+		10869EBC23F32682002A2C02 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EBA23F32682002A2C02 /* OrdersViewModel.swift */; };
+		10869EBE23F32A6B002A2C02 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EBD23F32A6B002A2C02 /* Reusable.swift */; };
+		10869EC023F32AF0002A2C02 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EBF23F32AF0002A2C02 /* UICollectionView+Reusable.swift */; };
+		10869EC223F32B1E002A2C02 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869EC123F32B1E002A2C02 /* UIView+Nib.swift */; };
 		566E53299D401FCA07C90D03 /* Pods_Flowers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5247CF94E3DC16E906897998 /* Pods_Flowers.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +32,12 @@
 		10869EAE23F314D7002A2C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10869EB023F31A2A002A2C02 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		10869EB223F31A48002A2C02 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		10869EB723F32615002A2C02 /* OrdersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCoordinator.swift; sourceTree = "<group>"; };
+		10869EB923F32682002A2C02 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		10869EBA23F32682002A2C02 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
+		10869EBD23F32A6B002A2C02 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		10869EBF23F32AF0002A2C02 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		10869EC123F32B1E002A2C02 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		4B70D496EF1B37B95CDF55BF /* Pods-Flowers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flowers.debug.xcconfig"; path = "Target Support Files/Pods-Flowers/Pods-Flowers.debug.xcconfig"; sourceTree = "<group>"; };
 		5247CF94E3DC16E906897998 /* Pods_Flowers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flowers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -142,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				10869E9C23F314A4002A2C02 /* Reusable */,
+				10869EC123F32B1E002A2C02 /* UIView+Nib.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -149,6 +162,8 @@
 		10869E9C23F314A4002A2C02 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				10869EBD23F32A6B002A2C02 /* Reusable.swift */,
+				10869EBF23F32AF0002A2C02 /* UICollectionView+Reusable.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -181,6 +196,7 @@
 			children = (
 				10869EB023F31A2A002A2C02 /* Coordinator.swift */,
 				10869EA123F314A4002A2C02 /* Root */,
+				10869EB423F325CE002A2C02 /* Orders */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -216,6 +232,16 @@
 				10869EAE23F314D7002A2C02 /* Assets.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		10869EB423F325CE002A2C02 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				10869EB723F32615002A2C02 /* OrdersCoordinator.swift */,
+				10869EB923F32682002A2C02 /* OrdersViewController.swift */,
+				10869EBA23F32682002A2C02 /* OrdersViewModel.swift */,
+			);
+			path = Orders;
 			sourceTree = "<group>";
 		};
 		655E9EE7ABFEFC02E325F66B /* Pods */ = {
@@ -350,8 +376,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				10869EB323F31A48002A2C02 /* RootCoordinator.swift in Sources */,
+				10869EBB23F32682002A2C02 /* OrdersViewController.swift in Sources */,
+				10869EB823F32615002A2C02 /* OrdersCoordinator.swift in Sources */,
 				10869EA823F314A4002A2C02 /* AppDelegate.swift in Sources */,
+				10869EBE23F32A6B002A2C02 /* Reusable.swift in Sources */,
 				10869EA923F314A4002A2C02 /* SceneDelegate.swift in Sources */,
+				10869EC023F32AF0002A2C02 /* UICollectionView+Reusable.swift in Sources */,
+				10869EBC23F32682002A2C02 /* OrdersViewModel.swift in Sources */,
+				10869EC223F32B1E002A2C02 /* UIView+Nib.swift in Sources */,
 				10869EB123F31A2A002A2C02 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
