@@ -49,6 +49,8 @@ final class OrdersViewController: UIViewController {
         
         initView()
         initBindings()
+        
+        viewModel.loadData()
     }
     
     private func initView() {

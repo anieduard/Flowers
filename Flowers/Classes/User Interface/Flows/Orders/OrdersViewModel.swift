@@ -11,11 +11,13 @@ import class UIKit.UIImage
 import struct UIKit.NSDiffableDataSourceSnapshot
 
 protocol OrdersFlowDelegate: AnyObject {
-    
+    func shouldShowError(_ error: Error, on viewModel: OrdersViewModel)
 }
 
 protocol OrdersViewModel: AnyObject {
+    var reloadData: ((OrdersViewModelImpl.DataSourceType) -> Void)? { get set }
     
+    func loadData()
 }
 
 final class OrdersViewModelImpl: OrdersViewModel {
@@ -26,15 +28,35 @@ final class OrdersViewModelImpl: OrdersViewModel {
     
     weak var flowDelegate: OrdersFlowDelegate?
     
+    var reloadData: ((DataSourceType) -> Void)?
+    
     // MARK: - Private properties
     
+    private let ordersService: OrdersService
     private var dataSourceSnapshot: DataSourceType
     
     // MARK: - Init
     
-    init() {
+    init(ordersService: OrdersService) {
+        self.ordersService = ordersService
+        
         dataSourceSnapshot = DataSourceType()
         dataSourceSnapshot.appendSections(Section.allCases)
+    }
+    
+    // MARK: - Logic
+    
+    func loadData() {
+        ordersService.fetchOrders { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let orders):
+                self.dataSourceSnapshot.appendItems([], toSection: .orders)
+            case .failure(let error):
+                self.flowDelegate?.shouldShowError(error, on: self)
+            }
+        }
     }
 }
 
