@@ -24,6 +24,12 @@ final class NetworkClient {
     
     private let session: SessionManager
     
+    private lazy var jsonDecoder: JSONDecoder = {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .secondsSince1970
+        return jsonDecoder
+    }()
+    
     // MARK: - Init
     
     init(session: SessionManager = .default) {
@@ -51,9 +57,11 @@ final class NetworkClient {
     }
     
     func performRequest<T: Decodable>(_ request: URLRequest, completion: @escaping (Swift.Result<T, Error>) -> Void) {
-        performRequest(request) { result in
+        performRequest(request) { [weak self] result in
+            guard let self = self else { return }
+            
             do {
-                let object = try JSONDecoder().decode(T.self, from: result.get())
+                let object = try self.jsonDecoder.decode(T.self, from: result.get())
                 completion(.success(object))
             } catch {
                 completion(.failure(error))

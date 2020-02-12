@@ -15,6 +15,7 @@ struct Order: Decodable, Hashable {
         case image
         case description
         case price
+        case date
         case deliverTo = "deliver_to"
         case deliveryAddress = "delivery_address"
         case receiverPhone = "receiver_phone"
@@ -25,6 +26,7 @@ struct Order: Decodable, Hashable {
     let image: URL
     let description: String
     let price: Double
+    let date: Date
     let deliverTo: String
     let deliveryAddress: String
     let receiverPhone: String
@@ -36,6 +38,7 @@ struct Order: Decodable, Hashable {
         image = try container.decode(URL.self, forKey: .image)
         description = try container.decode(String.self, forKey: .description)
         price = try container.decode(Double.self, forKey: .price)
+        date = try container.decode(Date.self, forKey: .date)
         deliverTo = try container.decode(String.self, forKey: .deliverTo)
         deliveryAddress = try container.decode(String.self, forKey: .deliveryAddress)
         receiverPhone = try container.decode(String.self, forKey: .receiverPhone)

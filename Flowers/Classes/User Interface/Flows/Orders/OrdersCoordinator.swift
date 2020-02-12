@@ -39,6 +39,18 @@ extension OrdersCoordinator: OrdersFlowDelegate {
         let alertController = showErrorAlertController(on: navigationController, error: error, actions: actions)
         self.alertController = alertController
     }
+    
+    func shouldShowOrderDetail(for order: Order, on viewModel: OrdersViewModel) {
+        let storyboard = UIStoryboard(name: String(describing: OrderDetailViewController.self), bundle: .main)
+        let viewModel = OrderDetailViewModelImpl(order: order)
+        guard let viewController = storyboard.instantiateInitialViewController(creator: { coder in
+            return OrderDetailViewController(coder: coder, viewModel: viewModel)
+        }) else {
+            fatalError("Failed to load OrderDetailViewController from storyboard.")
+        }
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: - Constants

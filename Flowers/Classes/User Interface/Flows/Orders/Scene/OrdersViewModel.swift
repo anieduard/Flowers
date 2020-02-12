@@ -12,12 +12,14 @@ import struct UIKit.NSDiffableDataSourceSnapshot
 
 protocol OrdersFlowDelegate: AnyObject {
     func shouldShowError(_ error: Error, on viewModel: OrdersViewModel)
+    func shouldShowOrderDetail(for order: Order, on viewModel: OrdersViewModel)
 }
 
 protocol OrdersViewModel: AnyObject {
     var reloadData: ((OrdersViewModelImpl.DataSourceType) -> Void)? { get set }
     
     func loadData()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 final class OrdersViewModelImpl: OrdersViewModel {
@@ -33,6 +35,9 @@ final class OrdersViewModelImpl: OrdersViewModel {
     // MARK: - Private properties
     
     private let ordersService: OrdersService
+    
+    private var orders: [Order] = []
+    
     private var dataSourceSnapshot: DataSourceType
     
     // MARK: - Init
@@ -52,12 +57,20 @@ final class OrdersViewModelImpl: OrdersViewModel {
             
             switch result {
             case .success(let orders):
+                self.orders = orders
                 self.dataSourceSnapshot.appendItems(orders.map(OrderCollectionViewCellViewModelImpl.init), toSection: .orders)
                 self.reloadData?(self.dataSourceSnapshot)
             case .failure(let error):
                 self.flowDelegate?.shouldShowError(error, on: self)
             }
         }
+    }
+    
+    // MARK: - User interaction
+    
+    func didSelectItem(at indexPath: IndexPath) {
+        let order = orders[indexPath.item]
+        flowDelegate?.shouldShowOrderDetail(for: order, on: self)
     }
 }
 

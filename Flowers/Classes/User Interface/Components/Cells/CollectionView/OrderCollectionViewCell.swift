@@ -49,6 +49,13 @@ final class OrderCollectionViewCell: UICollectionViewCell, NibReusable {
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = .bigCornerRadius
     }
+    
+    // MARK: - Reuse
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.kf.cancelDownloadTask()
+    }
 }
 
 // MARK: - Constants
