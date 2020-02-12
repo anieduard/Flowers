@@ -77,7 +77,7 @@ final class OrdersViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let itemSizeWidth = view.frame.width - 2 * .padding3x
+        let itemSizeWidth = view.frame.width - (view.safeAreaInsets.left + view.safeAreaInsets.right) - 2 * .padding3x
         collectionViewFlowLayout.itemSize = CGSize(width: itemSizeWidth, height: itemSizeWidth / 2)
     }
     

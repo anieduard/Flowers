@@ -12,6 +12,8 @@ final class OrderDetailViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet private weak var scrollView: UIScrollView!
+    
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var imageView: UIImageView!
     
@@ -61,7 +63,17 @@ final class OrderDetailViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = nil
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        
+        // This is needed because contentInsetAdjustmentBehavior is set to .automatic and we need the imageView to be behind the transparent navigation bar.
+        scrollView.contentInset.top = -view.safeAreaInsets.top
+        scrollView.verticalScrollIndicatorInsets.top = -view.safeAreaInsets.top
+    }
+    
     private func initView() {
+        scrollView.delegate = self
+        
         imageContainerView.layer.masksToBounds = true
         imageContainerView.layer.cornerRadius = .bigCornerRadius
         imageContainerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -86,5 +98,20 @@ final class OrderDetailViewController: UIViewController {
         dateLabel.text = viewModel.date
         addressLabel.text = viewModel.address
         receiverPhoneLabel.text = viewModel.receiverPhone
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension OrderDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            let offsetHeightRatio = -scrollView.contentOffset.y / imageContainerView.frame.height
+            let scaleFactor = 1 + offsetHeightRatio
+            imageContainerView.transform = CGAffineTransform(translationX: 0, y: scrollView.contentOffset.y + (offsetHeightRatio * imageContainerView.frame.height) / 2).concatenating(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
+        } else {
+            imageContainerView.transform = CGAffineTransform(translationX: 0, y: scrollView.contentOffset.y * 0.25)
+        }
     }
 }
