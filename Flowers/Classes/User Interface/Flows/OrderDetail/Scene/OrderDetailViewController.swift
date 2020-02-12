@@ -49,6 +49,18 @@ final class OrderDetailViewController: UIViewController {
         initBindings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+    }
+    
     private func initView() {
         imageContainerView.layer.masksToBounds = true
         imageContainerView.layer.cornerRadius = .bigCornerRadius
@@ -56,6 +68,12 @@ final class OrderDetailViewController: UIViewController {
         
         deliveryInformationContainerView.layer.masksToBounds = true
         deliveryInformationContainerView.layer.cornerRadius = .bigCornerRadius
+        
+        deliveryInformationContainerView.layer.masksToBounds = false
+        deliveryInformationContainerView.layer.shadowColor = UIColor.black.cgColor
+        deliveryInformationContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        deliveryInformationContainerView.layer.shadowRadius = .cornerRadius
+        deliveryInformationContainerView.layer.shadowOpacity = 0.25
     }
     
     // MARK: - Bindings

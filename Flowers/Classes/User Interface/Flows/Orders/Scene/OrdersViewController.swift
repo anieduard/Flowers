@@ -55,20 +55,26 @@ final class OrdersViewController: UIViewController {
     }
     
     private func initView() {
+        navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_back.pdf")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_back.pdf")
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        navigationItem.title = .orders
+        
         view.backgroundColor = .systemBackground
         
         collectionView.delegate = self
         collectionView.dataSource = dataSource
-        collectionView.contentInset.top = .padding5x
+        collectionView.contentInset.top = .padding3x
         collectionView.register(cellType: OrderCollectionViewCell.self)
         
-        collectionViewFlowLayout.minimumLineSpacing = .padding5x
+        collectionViewFlowLayout.minimumLineSpacing = .padding3x
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let itemSizeWidth = view.frame.width - 2 * .padding5x
+        let itemSizeWidth = view.frame.width - 2 * .padding3x
         collectionViewFlowLayout.itemSize = CGSize(width: itemSizeWidth, height: itemSizeWidth / 2)
     }
     
@@ -80,6 +86,8 @@ final class OrdersViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension OrdersViewController: UICollectionViewDelegate {
     
@@ -94,4 +102,10 @@ extension OrdersViewController: UICollectionViewDelegate {
             cell.alpha = 1
         })
     }
+}
+
+// MARK: - Constants
+
+private extension String {
+    static let orders = "Orders"
 }

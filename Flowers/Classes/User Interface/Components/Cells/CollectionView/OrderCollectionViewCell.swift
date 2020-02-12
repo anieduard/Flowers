@@ -45,6 +45,7 @@ final class OrderCollectionViewCell: UICollectionViewCell, NibReusable {
         layer.shadowOffset = CGSize(width: 0, height: 1)
         layer.shadowRadius = .cornerRadius
         layer.shadowOpacity = 0.5
+        layer.cornerRadius = .bigCornerRadius
         
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = .bigCornerRadius
