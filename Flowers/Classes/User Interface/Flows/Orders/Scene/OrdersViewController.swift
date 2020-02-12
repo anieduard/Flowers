@@ -28,6 +28,8 @@ final class OrdersViewController: UIViewController {
         }
     }()
     
+    private let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+    
     // MARK: - Init
     
     init(viewModel: OrdersViewModel) {
@@ -66,6 +68,7 @@ final class OrdersViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = dataSource
         collectionView.contentInset.top = .padding3x
+        collectionView.backgroundView = activityIndicatorView
         collectionView.register(cellType: OrderCollectionViewCell.self)
         
         collectionViewFlowLayout.minimumLineSpacing = .padding3x
@@ -81,8 +84,14 @@ final class OrdersViewController: UIViewController {
     // MARK: - Bindings
     
     private func initBindings() {
-        viewModel.reloadData = { [weak self] dataSourceSnapshot in
-            self?.dataSource.apply(dataSourceSnapshot, animatingDifferences: true)
+        viewModel.stateDidChange = { [weak self] state in
+            switch state {
+            case .loading:
+                self?.activityIndicatorView.startAnimating()
+            case .content(let dataSourceSnapshot):
+                self?.activityIndicatorView.stopAnimating()
+                self?.dataSource.apply(dataSourceSnapshot, animatingDifferences: true)
+            }
         }
     }
 }

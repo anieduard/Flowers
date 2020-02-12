@@ -16,7 +16,7 @@ protocol OrdersFlowDelegate: AnyObject {
 }
 
 protocol OrdersViewModel: AnyObject {
-    var reloadData: ((OrdersViewModelImpl.DataSourceType) -> Void)? { get set }
+    var stateDidChange: ((OrdersViewModelImpl.State<OrdersViewModelImpl.DataSourceType>) -> Void)? { get set }
     
     func loadData()
     func didSelectItem(at indexPath: IndexPath)
@@ -26,11 +26,16 @@ final class OrdersViewModelImpl: OrdersViewModel {
     
     typealias DataSourceType = NSDiffableDataSourceSnapshot<Section, OrderCollectionViewCellViewModelImpl>
     
+    enum State<T> {
+        case loading
+        case content(T)
+    }
+    
     // MARK: - Public properties
     
     weak var flowDelegate: OrdersFlowDelegate?
     
-    var reloadData: ((DataSourceType) -> Void)?
+    var stateDidChange: ((State<DataSourceType>) -> Void)?
     
     // MARK: - Private properties
     
@@ -52,6 +57,8 @@ final class OrdersViewModelImpl: OrdersViewModel {
     // MARK: - Logic
     
     func loadData() {
+        stateDidChange?(.loading)
+        
         ordersService.fetchOrders { [weak self] result in
             guard let self = self else { return }
             
@@ -59,7 +66,7 @@ final class OrdersViewModelImpl: OrdersViewModel {
             case .success(let orders):
                 self.orders = orders
                 self.dataSourceSnapshot.appendItems(orders.map(OrderCollectionViewCellViewModelImpl.init), toSection: .orders)
-                self.reloadData?(self.dataSourceSnapshot)
+                self.stateDidChange?(.content(self.dataSourceSnapshot))
             case .failure(let error):
                 self.flowDelegate?.shouldShowError(error, on: self)
             }
