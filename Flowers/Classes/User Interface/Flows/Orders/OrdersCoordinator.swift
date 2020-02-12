@@ -13,15 +13,16 @@ final class OrdersCoordinator: Coordinator {
     private(set) var childCoordinators: [Coordinator] = []
     
     private let navigationController: UINavigationController
+    private let serviceLocator: ServiceLocator
     private weak var alertController: UIAlertController?
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, serviceLocator: ServiceLocator) {
         self.navigationController = navigationController
+        self.serviceLocator = serviceLocator
     }
     
     func start() {
-        #warning("DI?")
-        let viewModel = OrdersViewModelImpl(ordersService: .init())
+        let viewModel = OrdersViewModelImpl(serviceLocator: serviceLocator)
         viewModel.flowDelegate = self
         let viewController = OrdersViewController(viewModel: viewModel)
         navigationController.setViewControllers([viewController], animated: true)

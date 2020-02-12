@@ -8,7 +8,11 @@
 
 import Foundation
 
-final class OrdersService {
+protocol OrdersService: Service {
+    func fetchOrders(completion: @escaping (Result<[Order], Error>) -> Void)
+}
+
+final class OrdersServiceImpl: OrdersService {
     
     // MARK: - Private properties
     
@@ -23,7 +27,7 @@ final class OrdersService {
     
     // MARK: - Init
     
-    init(networkClient: NetworkClient = .init()) {
+    init(networkClient: NetworkClient) {
         self.networkClient = networkClient
     }
     

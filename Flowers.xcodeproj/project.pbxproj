@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		103E3F0123F4817A000C3F61 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103E3F0023F4817A000C3F61 /* ServiceLocator.swift */; };
+		103E3F0323F48228000C3F61 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103E3F0223F48228000C3F61 /* Service.swift */; };
 		10869EA823F314A4002A2C02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869E9823F314A4002A2C02 /* AppDelegate.swift */; };
 		10869EA923F314A4002A2C02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10869E9923F314A4002A2C02 /* SceneDelegate.swift */; };
 		10869EAB23F314A4002A2C02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10869EA423F314A4002A2C02 /* LaunchScreen.storyboard */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		00EA574C487172182C5D9310 /* Pods-Flowers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flowers.release.xcconfig"; path = "Target Support Files/Pods-Flowers/Pods-Flowers.release.xcconfig"; sourceTree = "<group>"; };
+		103E3F0023F4817A000C3F61 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
+		103E3F0223F48228000C3F61 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1082528923F28A9100EF63AD /* Flowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10869E9823F314A4002A2C02 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10869E9923F314A4002A2C02 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				10869EC723F33A64002A2C02 /* Errors */,
 				10869EC323F3385A002A2C02 /* NetworkClient.swift */,
+				103E3F0023F4817A000C3F61 /* ServiceLocator.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 		10869E9623F314A4002A2C02 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				103E3F0223F48228000C3F61 /* Service.swift */,
 				10869ECA23F33ED1002A2C02 /* OrdersService.swift */,
 			);
 			path = Services;
@@ -449,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10869EB323F31A48002A2C02 /* RootCoordinator.swift in Sources */,
+				103E3F0323F48228000C3F61 /* Service.swift in Sources */,
 				10869EB823F32615002A2C02 /* OrdersCoordinator.swift in Sources */,
 				10869EC423F3385A002A2C02 /* NetworkClient.swift in Sources */,
 				10869EA823F314A4002A2C02 /* AppDelegate.swift in Sources */,
@@ -462,6 +469,7 @@
 				10869EC623F33A1C002A2C02 /* APIConstants.swift in Sources */,
 				10869ED123F347BE002A2C02 /* OrderCollectionViewCell.swift in Sources */,
 				10BD911923F458A00075B741 /* OrdersViewModel.swift in Sources */,
+				103E3F0123F4817A000C3F61 /* ServiceLocator.swift in Sources */,
 				10869ED723F35508002A2C02 /* Animations.swift in Sources */,
 				10869EC923F33A6F002A2C02 /* NetworkError.swift in Sources */,
 				10BD911823F458A00075B741 /* OrdersViewController.swift in Sources */,

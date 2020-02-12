@@ -47,8 +47,8 @@ final class OrdersViewModelImpl: OrdersViewModel {
     
     // MARK: - Init
     
-    init(ordersService: OrdersService) {
-        self.ordersService = ordersService
+    init(serviceLocator: ServiceLocator) {
+        self.ordersService = serviceLocator.resolve(type: OrdersServiceImpl.self)
         
         dataSourceSnapshot = DataSourceType()
         dataSourceSnapshot.appendSections(Section.allCases)
