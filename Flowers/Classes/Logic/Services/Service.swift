@@ -9,5 +9,18 @@
 import Foundation
 
 protocol Service: AnyObject {
+    var networkClient: NetworkClient { get }
+    var path: String { get }
+    
     init(networkClient: NetworkClient)
+}
+
+extension Service {
+    
+    var url: URL {
+        var components = networkClient.baseURL
+        components.path = path
+        guard let url = components.url else { fatalError("The URL couldn't be formed from the specified components: \(components).") }
+        return url
+    }
 }

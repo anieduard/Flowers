@@ -38,7 +38,7 @@ final class NetworkClient {
     
     // MARK: - Logic
     
-    func performRequest(_ request: URLRequest, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
+    private func performRequest(_ request: URLRequest, completion: @escaping (Swift.Result<Data, Error>) -> Void) {
         session.request(request)
             .validate()
             .response { response in

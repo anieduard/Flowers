@@ -14,16 +14,11 @@ protocol OrdersService: Service {
 
 final class OrdersServiceImpl: OrdersService {
     
-    // MARK: - Private properties
+    // MARK: - Public properties
     
-    private let networkClient: NetworkClient
+    let networkClient: NetworkClient
     
-    private var url: URL {
-        var components = networkClient.baseURL
-        components.path = APIConstants.Path.orders
-        guard let url = components.url else { fatalError("The URL couldn't be formed from the specified components: \(components).") }
-        return url
-    }
+    var path: String { return APIConstants.Path.orders }
     
     // MARK: - Init
     
